@@ -12,12 +12,11 @@ app.use(bodyparser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname,'public')));
 
 app.use(cors());
-
 portfinder.getPort(function(err,port){
     try {
         if(err)throw err
         app.listen(port,(error)=>{
-            console.log("server Listen at port"+port);
+            console.log("server Listenn at port"+port);
         });
     } catch (err) {
         console.log("Error on server port Listen : "+err)
