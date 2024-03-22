@@ -1,0 +1,23 @@
+{
+  "name": "regloginmodule",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/surbhir2024/registrationloginmodule.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/surbhir2024/registrationloginmodule/issues"
+  },
+  "homepage": "https://github.com/surbhir2024/registrationloginmodule#readme",
+  "dependencies": {
+    "md5": "^2.3.0"
+  }
+}

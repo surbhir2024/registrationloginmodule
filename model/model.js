@@ -1,6 +1,6 @@
 const connection = require('../connection.js');
-let control = require('../controler/controler.js');
-const crypto = require('crypto');
+// let control = require('../controler/controler.js');
+const md5 = require('md5');
 
 exports.insertdata = async function(data)
 {   
@@ -64,6 +64,8 @@ exports.insertpass = async function(passdata)
     })
     return await passupdatedata;
 }
+
+
 exports.checklogindata = async function(logindata)
 {
     let sql = `select * from registration where email = "${logindata.uname}"`
@@ -75,7 +77,7 @@ exports.checklogindata = async function(logindata)
             if(tabledata.length != 0 )
             {
             logindata.pass =  logindata.pass + tabledata[0].salt;
-            logindata.password = crypto.createHash('md5').update(logindata.pass).digest('hex');
+            logindata.password = md5(logindata.pass);
             if(tabledata[0].passwordd === logindata.password && tabledata[0].statuscode == 1)
             {
                 logindata.error = "Success";
@@ -102,48 +104,7 @@ exports.checklogindata = async function(logindata)
 })
      return await checkdata;
 }
-// async function checkdfdata(tabledata,logindata)
-// {
-//   await tabledata.forEach(data => {
-//         if(data.email === logindata.uname)
-//         {
-//             logindata.pass = data.salt + logindata.pass;
-//         }
-//    });
-//     logindata.password = crypto.createHash('md5').update(logindata.pass).digest('hex');
-//     console.log(logindata.password);
 
-//     tabledata.forEach(data => {
-//         if(data.passwordd === logindata)
-//         {
-//             logindata.pass = data.salt + logindata.pass;
-//         }
-//    });
-
-    //  if(logindata.password === tabledata.passwordd)
-    // {
-    //     console.log("hiii");
-    // }
     
    
    
-// }
-     
-   
-    
-
-   
-
-// exports.getdata = function()
-// {
-//     sql = `select email from registration`;
-//     connection.query(sql,(err,data)=>{
-//         try {
-//             if(err)throw err;
-//             return data;
-            
-//         } catch (err) {
-//             console.log(err)
-//         }
-//     })
-// }
