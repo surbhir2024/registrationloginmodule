@@ -38,19 +38,20 @@ function logindatacheck(){
         })
         .then(dataobj => {
             console.log(dataobj);
-            showresult(dataobj.error);
+            showresult(dataobj.error,dataobj.token);
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
         });
 
 }
-function showresult(resobj)
+function showresult(resobj,token)
 {
     console.log(resobj);
     if(resobj === "Success")
     {
        document.getElementById('myModal').style.display = "block";
+       localStorage.setItem("token",token);
     }
     if(resobj === "Error")
     {

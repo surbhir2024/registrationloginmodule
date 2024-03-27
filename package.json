@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/surbhir2024/registrationloginmodule#readme",
   "dependencies": {
+    "jsonwebtoken": "^9.0.2",
     "md5": "^2.3.0"
   }
 }

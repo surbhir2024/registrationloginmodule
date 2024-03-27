@@ -1,6 +1,7 @@
 const connection = require('../connection.js');
 // let control = require('../controler/controler.js');
 const md5 = require('md5');
+const jwt = require('jsonwebtoken')
 
 exports.insertdata = async function(data)
 {   
@@ -81,6 +82,12 @@ exports.checklogindata = async function(logindata)
             if(tabledata[0].passwordd === logindata.password && tabledata[0].statuscode == 1)
             {
                 logindata.error = "Success";
+                const token = jwt.sign({ userId: tabledata[0].id }, 'your-secret-key', {
+                    expiresIn: '1h',
+                    });
+                logindata.token = token;
+                    // res.status(200).json({ token });
+
             }
             else
             {

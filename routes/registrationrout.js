@@ -25,4 +25,5 @@ routes.post('/logindata',async(req,res)=>{
     res.json(await loginres);
 
 })
+
 module.exports = routes;
