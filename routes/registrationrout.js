@@ -6,6 +6,7 @@ const path = require('path');
 const { stat } = require('fs/promises');
 const { rejects } = require('assert');
 let controler = require('../controler/controler.js')
+const middleware = require('../middleware/authMiddleware.js')
 
 routes.post('/registerdata', async(req, res) => {
     var userdata = req.body;
@@ -19,11 +20,17 @@ routes.post('/updatepass',async(req,res)=>{
     res.json(passres);
 })
 routes.post('/logindata',async(req,res)=>{
-    logindata = req.body;
-    loginres = controler.checkpass(logindata);
-    // console.log(await loginres);
-    res.json(await loginres);
+    let logindata = req.body;
+    let loginres = await controler.checkpass(logindata);
+    // console.log(loginres.token);
+    // let token = loginres.token;
+    res.json(loginres);
 
+    // console.log(await loginres);
+
+})
+routes.get('/home',middleware,async(req,res)=>{
+   res.render('home')
 })
 
 module.exports = routes;
