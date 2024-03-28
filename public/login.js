@@ -51,7 +51,7 @@ function showresult(resobj,token)
     if(resobj === "Success")
     {
        document.getElementById('myModal').style.display = "block";
-       document.cookie = `Access-tocken=${token}; expires=Thu, 28 Dec 2024 12:00:00 UTC`
+       document.cookie = `Access_tocken=${token}; expires=Thu, 28 Dec 2024 12:00:00 UTC`
         window.location.href = 'http://127.0.0.1:5500/public/home.html';
        //    localStorage.setItem("token",token);
     }

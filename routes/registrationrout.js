@@ -3,10 +3,8 @@ const ejs = require('ejs');
 require('dotenv').config();
 const routes = express.Router();
 const path = require('path');
-const { stat } = require('fs/promises');
-const { rejects } = require('assert');
 let controler = require('../controler/controler.js')
-const middleware = require('../middleware/authMiddleware.js')
+const verifyJWT = require('../middleware/authMiddleware.js');
 
 routes.post('/registerdata', async(req, res) => {
     var userdata = req.body;
@@ -29,8 +27,10 @@ routes.post('/logindata',async(req,res)=>{
     // console.log(await loginres);
 
 })
-routes.get('/home',middleware,async(req,res)=>{
-   res.render('home')
+routes.post('/home',verifyJWT,(req,res)=>{
+    console.log("hii");
+   
+    res.status(200).json({ message: 'Protected route accessed' });
 })
 
 module.exports = routes;

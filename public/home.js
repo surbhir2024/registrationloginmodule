@@ -6,7 +6,12 @@ function getcookie()
 }
 function anything()
 {
-    let cookie = getcookie();
+    let cookie = getcookie()
+    let cookievalue = cookie.split('=')[2]
+    console.log(cookie);
+    let datapase = {}
+    datapase.cookie = cookievalue;
+    console.log(datapase);
     if(cookie)
     {
         fetch(`http://localhost:8000/home`, {
@@ -16,13 +21,16 @@ function anything()
             "Content-Type": "application/json",
             'Access-Control-Allow-Origin': '*'
         },
-        body: JSON.stringify(cookie)
+        body:JSON.stringify(datapase) 
     })
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
             return response.json();
+        })
+        .then(data=>{
+            console.log(data);
         })
         
         .catch(error => {
