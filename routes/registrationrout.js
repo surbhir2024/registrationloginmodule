@@ -28,9 +28,7 @@ routes.post('/logindata',async(req,res)=>{
 
 })
 routes.post('/home',verifyJWT,(req,res)=>{
-    console.log("hii");
-   
     res.status(200).json({ message: 'Protected route accessed' });
 })
-
+ 
 module.exports = routes;
